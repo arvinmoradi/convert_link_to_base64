@@ -46,7 +46,7 @@ show_menu() {
 
 install() {
   echo -e "${BLUE}Updating Packages...${NC}"
-  sudo apt-get install update -y >/dev/null 2>&1
+  sudo apt update -y >/dev/null 2>&1
   echo -e "${BLUE}Installing Packages...${NC}"
   sudo apt-get install python3 python3-venv python3-pip git >/dev/null 2>&1
 
