@@ -73,12 +73,12 @@ install() {
   python3 -m  venv venv
   source venv/bin/activate
 
-  echo -e "${GREEN}Installing requitements...${NC}"
+  echo -e "${GREEN}Installing requirements...${NC}"
   pip install --upgrade pip >/dev/null
   pip install -r requirements.txt >/dev/null
   
   if [ -f "$BOT_DIR/.env.example" ] && [ ! -f "$BOT_DIR/.env" ]; then
-      cp "${BOT_DIR}/.evn.example" "${BOT_DIR}/.env"
+      cp "${BOT_DIR}/.env.example" "${BOT_DIR}/.env"
       echo -e "✅ .env created"
   else
       echo -e "️ Skipping .env creation (already exists or .env.example missing)"
@@ -190,7 +190,7 @@ while true; do
     2) update ;;
     3) restart ;;
     4) uninstall ;;
-    5) echo "Exit..."; exit 0 ;;
+    0) echo "Exit..."; exit 0 ;;
     *) echo "Invalid Choice"; sleep 2 ;;
   esac
 done
