@@ -110,7 +110,7 @@ EOF
   sudo systemctl start "${SERVICE_NAME}"
 
   echo -e "✅ ${GREEN}Bot installed and service created successfully!${NC}"
-  deactive
+  deactivate
 
   status="${GREEN}INSTALLED${NC}"
   echo -e "Before doing anything else, you must first edit the .env file"
