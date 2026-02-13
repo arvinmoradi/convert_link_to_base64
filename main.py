@@ -2,6 +2,7 @@ import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 import base64
 import os
+import re
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,11 +13,11 @@ bot = telebot.TeleBot(BOT_TOKEN)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-    btn = KeyboardButton('شروع')
-    markup.add(btn)
+    btn = KeyboardButton('Link ➡️ Base64')
+    markup.add(btn1)
     bot.send_message(message.chat.id, '🍃 ArM 🍃\n\nربات تبدیل لینک به base64\n\nلینک را برای تبدیل به base64 ارسال کنید', reply_markup=markup)
 
-@bot.message_handler(func=lambda message: message.text == 'شروع')
+@bot.message_handler(func=lambda message: message.text == 'Link ➡️ Base64')
 def handle_start(message):
     send_welcome(message)
 
@@ -24,12 +25,14 @@ def handle_start(message):
 @bot.message_handler(func=lambda message: True)
 def convert_link_to_base64(message):
     text = message.text.strip()
-
-    try:
-        encoded = base64.b64encode(text.encode("utf-8")).decode("utf-8")
-        bot.send_message(message.chat.id, encoded)
-        bot.send_message(message.chat.id, 'لینک با موفقیت به base64 تبدیل شد ✅')
-    except Exception as e:
-        bot.reply_to(message, f"❌ خطا:\n{e}")
+    if re.match(r"^(https?|vless|vmess|ss|trojan)://", text):
+        try:
+            encoded = base64.b64encode(text.encode("utf-8")).decode("utf-8")
+            bot.send_message(message.chat.id, encoded)
+            bot.send_message(message.chat.id, 'لینک با موفقیت به base64 تبدیل شد ✅')
+        except Exception as e:
+            bot.reply_to(message, f"❌ خطا:\n{e}")
+    else:
+        bot.reply_to(message, "❌ ساختار اشتباه است، لینک صحیح وارد کنید")
 
 bot.infinity_polling()
