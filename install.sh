@@ -62,7 +62,17 @@ install() {
   echo -e "${BLUE}Updating Packages...${NC}"
   sudo apt update -y >/dev/null 2>&1
   echo -e "${BLUE}Installing Packages...${NC}"
-  sudo apt-get install python3 python3-venv python3-pip git >/dev/null 2>&1
+  sudo apt-get install -y \
+   python3 \
+   python3-venv \
+   python3-pip \
+   python3-dev \
+   build-essential \
+   curl \
+   ca-certificates \
+   openssl \
+   git >/dev/null 2>&1
+   sudo update-ca-certificates --fresh >/dev/null 2>&1
 
   sudo mkdir -p "${BOT_DIR}"
   cd "${BOT_DIR}"
