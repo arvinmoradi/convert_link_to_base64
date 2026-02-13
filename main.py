@@ -14,7 +14,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 def send_welcome(message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     btn = KeyboardButton('Link ➡️ Base64')
-    markup.add(btn1)
+    markup.add(btn)
     bot.send_message(message.chat.id, '🍃 ArM 🍃\n\nربات تبدیل لینک به base64\n\nلینک را برای تبدیل به base64 ارسال کنید', reply_markup=markup)
 
 @bot.message_handler(func=lambda message: message.text == 'Link ➡️ Base64')
