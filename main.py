@@ -12,11 +12,10 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    markup = ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-    btn1 = KeyboardButton('Link ➡️ Base64')
-    btn2 = KeyboardButton('Base64 ➡️ Link')
-    markup.add(btn1, btn2)
-    bot.message_handler(message.chat.id, 'ArM\n\nتبدیل لینک به base64 و برعکس\n\nیکی از گزینه‌ها را انتخاب کنید:', reply_markup=markup)
+    markup = ReplyKeyboardMarkup(resize_keyboard=True)
+    markup.row(KeyboardButton('Link ➡️ Base64'))
+    markup.row(KeyboardButton('Base64 ➡️ Link'))
+    bot.send_message(message.chat.id, 'ArM\n\nتبدیل لینک به base64 و برعکس\n\nیکی از گزینه‌ها را انتخاب کنید:', reply_markup=markup)
 
 
 @bot.message_handler(func=lambda message: message.text == 'Link ➡️ Base64')
