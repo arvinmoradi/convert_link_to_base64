@@ -20,6 +20,10 @@ def send_welcome(message):
     bot.send_message(message.chat.id, 'ArM\n\nلینک یا Base64 را بفرست.\nمن خودم تشخیص می‌دهم و تبدیل می‌کنم', reply_markup=markup)
 
 
+@bot.message_handler(func=lambda message: message.text == 'شروع')
+def start(message):
+    send_welcome(message)
+
 @bot.message_handler(func=lambda message: True)
 def converter(message):
     text = message.text.strip()
