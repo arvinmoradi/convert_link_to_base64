@@ -20,7 +20,7 @@ REPO_DIR="https://github.com/arvinmoradi/convert_link_to_base64.git"
 
 #SERVICE_NAME
 SERVICE_NAME='link2base64_bot.service'
-VERSION='v1.2.0'
+VERSION='v2.2.0'
 
 press_key() {
     read -r -p "press key to back main menu..."
